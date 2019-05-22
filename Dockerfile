@@ -1,6 +1,4 @@
-FROM phusion/baseimage:latest
-
-RUN apt-get update && apt-get install -y python-dev python-pip
+FROM python:3.7
 
 COPY . /app
 WORKDIR /app
