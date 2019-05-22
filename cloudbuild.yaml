@@ -5,3 +5,5 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/sample-gcp-app"]
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['beta', 'run', 'deploy', 'sample-gcp-app', '--image', 'gcr.io/$PROJECT_ID/sample-gcp-app:${TAG_NAME}', '--region', 'us-central1']
+images:
+- gcr.io/$PROJECT_ID/sample-gcp-app
