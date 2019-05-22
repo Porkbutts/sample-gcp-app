@@ -12,5 +12,5 @@ def index():
     return 'Hello, World!'
 
 if __name__ == '__main__':
-    server = WSGIServer(('0.0.0.0', os.environ.get('PORT', 8080)), app)
+    server = WSGIServer(('0.0.0.0', int(os.environ.get('PORT', 8080))), app)
     server.serve_forever()
