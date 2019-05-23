@@ -1,5 +1,5 @@
 ## Sample Flask app to run in GCP Cloud run
-[![cloud build status](https://storage.googleapis.com/sample-gcp-app-cicd/build/sample-gcp-app-master-badge.svg?hi)](https://github.com/Porkbutts/sample-gcp-app)
+[![cloud build status](https://storage.googleapis.com/sample-gcp-app-cicd/build/sample-gcp-app-master-badge.svg?branch=master)](https://github.com/Porkbutts/sample-gcp-app)
 
 Just a simple flask app for now.
 
