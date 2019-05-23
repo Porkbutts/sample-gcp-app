@@ -2,7 +2,7 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/sample-gcp-app:${TAG_NAME}', '.']
 - name: gcr.io/cloud-builders/docker
-  args: ['run', '-ti', '--rm', 'gcr.io/$PROJECT_ID/sample-gcp-app:${TAG_NAME}', 'python', '-m', 'unittest', 'discover', '-v', '-s', 'tests']
+  args: ['run', '--rm', 'gcr.io/$PROJECT_ID/sample-gcp-app:${TAG_NAME}', 'python', '-m', 'unittest', 'discover', '-v', '-s', 'tests']
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "gcr.io/$PROJECT_ID/sample-gcp-app"]
 - name: 'gcr.io/cloud-builders/gcloud'
