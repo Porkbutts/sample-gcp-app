@@ -33,4 +33,7 @@ PORT=80 python app.py
 Then visit on something like http://localhost:80
 
 ## Deploy
-Whenever commits are pushed to `master` or `develop`, Google Cloud will detect this and run the steps outlined in `cloudbuild-production.yaml` or `cloudbuild-staging.yaml` respectively. The built image will be deployed to Google Cloud Run on http://cloudrun-demo.tengamnuay.me for `master` branch or http://cloudrun-demo-staging.tengamnuay.me for `develop` branch.
+Whenever commits are pushed to the `master` or `develop` branch, Google Cloud will detect this and run the steps outlined in `cloudbuild-production.yaml` or `cloudbuild-staging.yaml` respectively. The built image will be deployed to Google Cloud Run as follows.
+
+- http://cloudrun-demo.tengamnuay.me `(master)`
+- http://cloudrun-demo-staging.tengamnuay.me `(develop)`
