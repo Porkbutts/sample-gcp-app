@@ -30,7 +30,7 @@ This assumes you have mongodb running on `localhost`.
 PORT=80 python app.py
 ```
 
-Then visit on something like http://localhost:80
+Then visit on something like http://localhost
 
 ## Deploy
 Whenever commits are pushed to the `master` or `develop` branch, Google Cloud will detect this and run the steps outlined in `cloudbuild-production.yaml` or `cloudbuild-staging.yaml` respectively. The built image will be deployed to Google Cloud Run as follows.
