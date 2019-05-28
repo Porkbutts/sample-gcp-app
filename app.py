@@ -16,7 +16,7 @@ def index():
         visitor_ip = request.remote_addr
         db.visitors.update_one({'_id': visitor_ip}, {
             '$inc': {'visit_count': 1}, 
-            '$set': {'_id': id}
+            '$set': {'_id': visitor_ip}
         }, upsert=True)
     except Exception as e:
         print(e)
