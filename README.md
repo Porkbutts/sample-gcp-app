@@ -19,18 +19,24 @@ pip install -r requirements.txt
 The application requires a mongodb database and is configured to find one over `localhost` by default.
 The app is exposed on whatever port the `PORT` environment variable is set to, or `8080` if not set.
 
-### Run web tier and mongodb using docker-compose
+### Run with docker-compose
 ```
+docker-compose build
 docker-compose up
 ```
 
 ### Run with Python
-This assumes you have mongodb running on `localhost`.
+In a separate shell run mongodb
+```
+mongod
+```
+
+Then start the web tier
 ```
 PORT=80 python app.py
 ```
 
-Then visit on something like http://localhost
+Visit on something like http://localhost
 
 ## Deploy
 Whenever commits are pushed to the `master` or `develop` branch, Google Cloud will detect this and run the steps outlined in `cloudbuild-production.yaml` or `cloudbuild-staging.yaml` respectively. The built image will be deployed to Google Cloud Run as follows.
