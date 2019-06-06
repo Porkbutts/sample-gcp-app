@@ -11,6 +11,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    try:
+        db = mongodb()
+        visitor_ip = request.remote_addr
+        db.visitors.update_one({'_id': visitor_ip}, {
+            '$inc': {'visit_count': 1}, 
+            '$set': {'_id': visitor_ip}
+        }, upsert=True)
+    except Exception as e:
+        print(e)
     return 'Hello, World!'
 
 @app.route('/api/signatures', methods=['GET', 'POST'])

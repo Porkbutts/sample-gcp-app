@@ -16,21 +16,30 @@ pip install -r requirements.txt
 ```
 
 ## Run
-You can run with python or with Docker. The app is exposed on whatever port the `PORT` environment variable is set to, or `8080` if not set.
+The application requires a mongodb database and is configured to find one over `localhost` by default.
+The app is exposed on whatever port the `PORT` environment variable is set to, or `8080` if not set.
 
-### Python
+### Run with docker-compose
 ```
-python app.py
-```
-
-### Docker
-```
-docker build -t sample-gcp-app:latest .
-docker run -ti --rm 8080:8080 sample-gcp-app:latest
+docker-compose build
+docker-compose up
 ```
 
-Then visit on something like http://localhost:8080
+### Run with Python
+In a separate shell run mongodb
+```
+mongod
+```
+
+Then start the web tier
+```
+PORT=80 python app.py
+```
+
+Visit on something like http://localhost
 
 ## Deploy
-The `cloudbuild.yaml` file tells GCP to build the docker image, then push it up to Google Container Registry.
-Lastly it kicks off a deploy to Google Cloud Run.
+Whenever commits are pushed to the `master` or `develop` branch, Google Cloud will detect this and run the steps outlined in `cloudbuild-production.yaml` or `cloudbuild-staging.yaml` respectively. The built image will be deployed to Google Cloud Run as follows.
+
+- `(master)` http://cloudrun-demo.tengamnuay.me
+- `(develop)` http://cloudrun-demo-staging.tengamnuay.me
