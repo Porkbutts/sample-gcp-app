@@ -3,6 +3,9 @@
 
 Just a simple flask app for now.
 
+## Requirements
+
+
 ## Build
 Create a virtual python environment.
 ```
@@ -16,22 +19,11 @@ pip install -r requirements.txt
 ```
 
 ## Run
-The application requires a mongodb database and is configured to find one over `localhost` by default.
-The app is exposed on whatever port the `PORT` environment variable is set to, or `8080` if not set.
-
-### Run with docker-compose
-```
-docker-compose build
-docker-compose up
-```
+As required by **Google Cloud Run**, the app is exposed on whatever port the `PORT` environment variable is set to, or `8080` if not set.
+The app depends on **Google Cloud Firestore** `(TODO: Instructions for developing with firestore)`.
 
 ### Run with Python
-In a separate shell run mongodb
-```
-mongod
-```
-
-Then start the web tier
+Start the web tier
 ```
 PORT=80 python app.py
 ```
