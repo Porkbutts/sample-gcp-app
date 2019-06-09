@@ -6,16 +6,18 @@ grpc_gevent.init_gevent()
 
 import os
 import time
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from gevent.pywsgi import WSGIServer
 
 from google.cloud import firestore
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
-    return 'Hello, World!'
+    return render_template('index.html')
+
 
 @app.route('/api/recentPersons', methods=['GET'])
 def get_recent_persons():
@@ -24,7 +26,7 @@ def get_recent_persons():
     limit = request.args.get('limit')
     try:
         limit = int(limit)
-    except (TypeError, ValueError) as e:
+    except (TypeError, ValueError):
         limit = 10
 
     results = []
@@ -33,6 +35,7 @@ def get_recent_persons():
         doc_dict['id'] = doc.id
         results.append(doc_dict)
     return jsonify(results)
+
 
 @app.route('/api/persons', methods=['POST'])
 def create_persons():
@@ -51,6 +54,7 @@ def create_persons():
     })
     return jsonify({'id': doc_ref.id})
 
+
 @app.route('/api/persons/<string:person_id>', methods=['GET'])
 def get_person(person_id):
     db = firestore.Client()
@@ -58,10 +62,11 @@ def get_person(person_id):
     if not person.exists:
         err_msg = 'No person with that ID exists'
         return jsonify({'error': err_msg}), 404
-        
+
     person_dict = person.to_dict()
     person_dict['id'] = person.id
     return jsonify(person_dict)
+
 
 if __name__ == '__main__':
     server = WSGIServer(('0.0.0.0', int(os.environ.get('PORT', 8080))), app)
